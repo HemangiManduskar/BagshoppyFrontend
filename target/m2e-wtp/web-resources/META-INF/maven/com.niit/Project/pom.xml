@@ -14,12 +14,33 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+        <groupId>com.niit</groupId>
+        <artifactId>BagShoppy</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
     <dependency>
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
     <version>4.0.0-b07</version>
     <scope>provided</scope>
 </dependency>
+
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>4.3.8.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+    <scope>runtime</scope>
+</dependency>
+
+
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-core</artifactId>

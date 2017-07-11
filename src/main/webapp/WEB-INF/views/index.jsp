@@ -59,9 +59,9 @@
           </ul>
         </li>
         <li><a href="#">About us</a></li>
+         <li><a href="Category">Manage Category</a></li>
       </ul>
-      
-      
+           
       <form class="navbar-form navbar-left">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Search">
@@ -112,6 +112,7 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
+    
 </div>
 
 
