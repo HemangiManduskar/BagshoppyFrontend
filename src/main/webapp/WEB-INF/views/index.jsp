@@ -1,3 +1,4 @@
+<%@taglib uri= "http://java.sun.com/jsp/jstl/core" prefix= "c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,56 +28,7 @@
   
 </head>
 <body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Bags Collection</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Travelling Bags </a></li>
-            <li><a href="#">Hand bags</a></li>
-             <li><a href="#">Purses</a></li>
-             <li><a href="#">Kids bags</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Payment Facilities<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Online payment</a></li>
-            <li><a href="#">Cash on Delivery</a></li>
-            <li><a href="#">Credit and Debit card</a></li>
-          </ul>
-        </li>
-        <li><a href="#">About us</a></li>
-         <li><a href="Category">Manage Category</a></li>
-      </ul>
-           
-      <form class="navbar-form navbar-left">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-      
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-         
-      </ul>
-    </div>
-  </div>
-</nav>
+<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 
 <div class="bs-example">
@@ -112,7 +64,6 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
-    
 </div>
 
 

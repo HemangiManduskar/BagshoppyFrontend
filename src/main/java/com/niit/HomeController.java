@@ -8,4 +8,10 @@ public String home()
 {
 	return "index";
 }
+@RequestMapping("Register")
+public String register()
+{
+	return "Register";
+}
+
 }

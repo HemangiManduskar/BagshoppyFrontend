@@ -1,7 +1,10 @@
 package com.niit;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,20 +32,25 @@ public class Catcontroller {
 	  return "Category";
 	 }
 
-	  // Saving Product
-	 @RequestMapping(value = "/save", method = RequestMethod.POST)
-	 public String save(@ModelAttribute("Category") Category c, Model m) {
-		 categoryDao.save(c);
+	  // Saving Category
+	 @RequestMapping(value = "/savecat", method = RequestMethod.POST)
+	 public String save(@Valid @ModelAttribute("Category") Category c,BindingResult result, Model m) {
+		 if(result.hasErrors()){
+			 return "Category";
+		 }
+		 else{
+		 categoryDao.savecat(c);
 	  m.addAttribute("Category", new Category());
 	  m.addAttribute("CategoryList", categoryDao.getAllCategory());
 	  m.addAttribute("msg", "Categoryadded successfully");
 	  return "Category";
 	 }
+	 }
 
 	  // Displaying Update Form
-	 @RequestMapping(value = "/update/{catid}", method = RequestMethod.GET)
-	 public String update(@PathVariable("catid") String catid, Model m) {
-	  Category c = categoryDao.getById(catid);
+	 @RequestMapping(value = "/updatecat/{catid}", method = RequestMethod.GET)
+	 public String updatecat(@PathVariable("catid") String catid, Model m) {
+	  Category c = categoryDao.getcatById(catid);
 	  m.addAttribute("isEditing", true);
 	  m.addAttribute("Category", c);
 	  m.addAttribute("CategoryList", categoryDao.getAllCategory());
@@ -51,9 +59,9 @@ public class Catcontroller {
 	 }
 
 	  // Updating Product
-	 @RequestMapping(value = "/update", method = RequestMethod.POST)
-	 public String update(@ModelAttribute("category") Category c, Model m) {
-		 categoryDao.update(c);
+	 @RequestMapping(value = "/updatecat", method = RequestMethod.POST)
+	 public String updatecat(@ModelAttribute("category") Category c, Model m) {
+		 categoryDao.updatecat(c);
 	  m.addAttribute("Category", new Category());
 	  m.addAttribute("CategoryList",categoryDao.getAllCategory());
 	  m.addAttribute("msg", "Category updated successfully");
@@ -61,9 +69,9 @@ public class Catcontroller {
 	 }
 
 	  // Deleting Product
-	 @RequestMapping(value = "/delete/{catid}", method = RequestMethod.GET)
-	 public String delete(@PathVariable("catid") String catid, Model m) {
-		 categoryDao.deleteById(catid);
+	 @RequestMapping(value = "/deletecat/{catid}", method = RequestMethod.GET)
+	 public String deletecat(@PathVariable("catid") String catid, Model m) {
+		 categoryDao.deletecatById(catid);
 	  m.addAttribute("Category", new Category());
 	  m.addAttribute("CategoryList",categoryDao.getAllCategory());
 	  m.addAttribute("msg", "Category deleted successfully");
