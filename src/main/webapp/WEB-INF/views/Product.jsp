@@ -6,33 +6,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <title>Product</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
-<div>
-${msg}
-</div>
+<jsp:include page="header.jsp"></jsp:include>
+
 <c:if test="${isEditing}" >
 <c:url var="formaction"  value="/updatepro"/>
 </c:if>
 <c:if test="${not isEditing}" >
 <c:url var="formaction"  value="/savepro"/>
 </c:if>
-<form:form method = "POST" modelAttribute="Product" action = "${formaction}">
+<form:form method = "POST" modelAttribute="Product" action="${formaction}" enctype="multipart/form-data">
          <table class="table">
 <tr>
-               <td><form:label path = "pid">Product Id:</form:label></td>
-               <td><form:input cssClass="form-control" path = "pid" /></td>
-               <td>
-               <form:errors cssClass="form-control" path="pid"/>
-               </td>
-            </tr>
-<tr>
+				<form:input type="hidden" path="pid" />
                <td><form:label path = "pname">Product Name:</form:label></td>
                <td><form:input cssClass="form-control" path = "pname" /></td>
                <td>
@@ -64,15 +53,33 @@ ${msg}
             </tr> 
             
             <tr>
-               <td><form:label path = "catid"> Category ID:</form:label></td>
-               <td><form:input cssClass="form-control" path = "catid" /></td>
+               <td><form:label type="file" path = "imgpath"> Image path:</form:label></td>
+               <td><form:input type="file" cssClass="form-control" path = "file"/></td>
+               </tr>
+            
+            
+            <tr>
+               <td><form:label path = "catid"> Category :</form:label></td>
+               <td>
+               		<form:select path="catid">
+               		<c:forEach items="${CategoryList}" var="Category">
+               			<form:option value="${Category.catid}">${Category.catname}</form:option>
+  					</c:forEach>
+               		</form:select>
+               </td>
                <td>
                <form:errors cssClass="form-control" path="catid"/>
                </td>
             </tr>
             <tr>
-               <td><form:label path = "supid">Supplier ID:</form:label></td>
-               <td><form:input cssClass="form-control" path = "supid" /></td>
+               <td><form:label path = "supid">Supplier :</form:label></td>
+               <td>
+               <form:select path="supid">
+               <c:forEach items="${SupplierList}" var="Supplier">
+               <form:option value="${Supplier.supid}">${Supplier.supname}</form:option>
+               </c:forEach>
+               </form:select>
+               </td>
                <td>
                <form:errors cssClass="form-control" path="supid"/>
                </td>
@@ -81,36 +88,28 @@ ${msg}
 <tr>
                <td colspan = "2">
                <c:if test="${isEditing}" >
-                  <input type = "submit" value = "Updatepro"/>
+                  <input type = "submit" value = "Update Product"/>
                   </c:if>
                      <c:if test="${not isEditing}" >
-                  <input type = "submit" value = "Savepro"/>
+                  <input type = "submit" value = "Save Product"/>
                   </c:if>
                </td>
             </tr>
 </table>
 </form:form>
       <table border="1" class="table">
-<tr>
-      <th>Product ID</th>
+<tr> 
       <th>Product Name</th>
-      <th>Product Description</th>
       <th>Product price</th>
-      <th>Product Quantity</th>
-      <th>Category ID</th>
-      <th>Supplier ID</th>
-      </tr>
+            </tr>
 <c:forEach var="pro" items="${ProductList}" >
 <tr>
-      <td>${pro.pid}</td>
+      
       <td>${pro.pname}</td>
-      <td>${pro.pdescriptn}</td>
       <td>${pro.price}</td>
-      <td>${pro.pqty}</td>
-      <td>${pro.catid}</td>
-      <td>${pro.supid}</td>
-      <td><a href="updatepro/${pro.pid}">Update</a></td>
-      <td><a href="deletepro/${pro.pid}">Delete</a></td>
+      <td><a href="<c:url value='/updatepro/${pro.pid}'/> ">Update</a></td>
+      <td><a href="<c:url value='/deletepro/${pro.pid}'/> ">Delete</a></td>
+      <td><a href="<c:url value='/disp/${pro.pid}'/> ">View</a></td>
       </tr>
 </c:forEach>
       </table>

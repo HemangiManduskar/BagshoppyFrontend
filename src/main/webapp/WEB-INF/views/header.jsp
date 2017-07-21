@@ -1,13 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
+<%@page isELIgnored="false" %>
+<%@taglib uri= "http://java.sun.com/jsp/jstl/core" prefix= "c" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -20,14 +15,13 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="<c:url value='/'/> ">Home</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Travelling Bags </a></li>
-            <li><a href="#">Hand bags</a></li>
-             <li><a href="#">Purses</a></li>
-             <li><a href="#">Kids bags</a></li>
+            <c:forEach var="Category" items="${CategoryList}">
+            <li><a href="#">${Category.catname}</a></li>
+            </c:forEach>
           </ul>
         </li>
         <li class="dropdown">
@@ -48,11 +42,8 @@
             <li><a href="Product">Manage Product</a></li>
           </ul>
         </li>
-        
-         
-      </ul>
-           
-      <form class="navbar-form navbar-left">
+        </ul>
+     <form class="navbar-form navbar-left">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Search">
       </div>
@@ -61,17 +52,10 @@
       
       <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-      <li><a href=" Register"><span class="glyphicon glyphicon-book"></span>Register</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-         
-      </ul>
+      <li><a href="Register"><span class="glyphicon glyphicon-book"></span>Register</a></li>
+        <li><a href="Login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+         </ul>
+    
     </div>
   </div>
 </nav>
-
-
-
-
-
-</body>
-</html>

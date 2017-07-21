@@ -6,19 +6,13 @@
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
 <link rel="stylesheet" type="text/css" href="resources/css/Stylesheet1.css">
 <script type="text/javascript" src="resources/js/Script1.js"></script> 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Manage Supplier</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <c:if test="${isEditing}" >
 <c:url var="formaction"  value="/updatesup"/>
 </c:if>
@@ -27,14 +21,9 @@
 </c:if>
 <form:form method = "POST" modelAttribute="Supplier" action = "${formaction}">
          <table class="table">
+
 <tr>
-               <td><form:label path = "supid">Supplier Id:</form:label></td>
-               <td><form:input cssClass="form-control" path= "supid" /></td>
-               <td>
-               <form:errors cssClass="form-control" path="supid"/>
-               </td>
-            </tr>
-<tr>
+				<form:input type="hidden" path="supid" />
                <td><form:label path = "supname">Name:</form:label></td>
                <td><form:input cssClass="form-control" path = "supname" /></td>
                <td>
@@ -52,10 +41,10 @@
 <tr>
                <td colspan = "2">
                <c:if test="${isEditing}" >
-                  <input type = "submit" value = "Updatesup"/>
+                  <input type = "submit" value = "Update Supplier"/>
                   </c:if>
                      <c:if test="${not isEditing}" >
-                  <input type = "submit" value = "Savesup"/>
+                  <input type = "submit" value = "Save Supplier"/>
                   </c:if>
                </td>
             </tr>
@@ -72,8 +61,8 @@
       <td>${sup.supid}</td>
       <td>${sup.supname}</td>
       <td>${sup.supadd}</td>
-      <td><a href="updatesup/${sup.supid}">Update</a></td>
-      <td><a href="deletesup/${sup.supid}">Delete</a></td>
+      <td><a href="<c:url value='/updatesup/${sup.supid}'/> ">Update</a></td>
+      <td><a href="<c:url value='/deletesup/${sup.supid}'/> ">Delete</a></td>
       </tr>
 </c:forEach>
       </table></div>

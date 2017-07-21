@@ -6,18 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 <title>Category</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
-
-<div>
-${msg}
-</div>
+<jsp:include page="header.jsp"></jsp:include>
 <c:if test="${isEditing}" >
 <c:url var="formaction"  value="/updatecat"/>
 </c:if>
@@ -26,15 +20,10 @@ ${msg}
 </c:if>
 <form:form method = "POST" modelAttribute="Category" action = "${formaction}">
          <table class="table">
+
 <tr>
-               <td><form:label path = "catid">Category Id:</form:label></td>
-               <td><form:input cssClass="form-control" path = "catid" /></td>
-               <td>
-               <form:errors cssClass="form-control" path="catid"/>
-               </td>
-            </tr>
-<tr>
-               <td><form:label path = "catname">Name:</form:label></td>
+ 			<form:input type="hidden" path="catid" />
+               <td><form:label path ="catname">Name:</form:label></td>
                <td><form:input cssClass="form-control" path = "catname" /></td>
                <td>
                <form:errors cssClass="form-control" path="catname"/>
@@ -42,7 +31,7 @@ ${msg}
             </tr>
 
 <tr>
-               <td><form:label path = "catdescriptn">Description</form:label></td>
+               <td><form:label path ="catdescriptn">Description</form:label></td>
                <td><form:input cssClass="form-control" path = "catdescriptn" /></td>
                <td>
                <form:errors cssClass="form-control" path="catdescriptn"/>
@@ -51,10 +40,10 @@ ${msg}
 <tr>
                <td colspan = "2">
                <c:if test="${isEditing}" >
-                  <input type = "submit" value = "Updatecat"/>
+                  <input type = "submit" value = "Update Category"/>
                   </c:if>
                      <c:if test="${not isEditing}" >
-                  <input type = "submit" value = "Savecat"/>
+                  <input type = "submit" value = "Save Category"/>
                   </c:if>
                </td>
             </tr>
@@ -71,8 +60,8 @@ ${msg}
       <td>${cat.catid}</td>
       <td>${cat.catname}</td>
       <td>${cat.catdescriptn}</td>
-      <td><a href="updatecat/${cat.catid}">Update</a></td>
-      <td><a href="deletecat/${cat.catid}">Delete</a></td>
+      <td><a href="<c:url value='/updatecat/${cat.catid}'/> ">Update</a></td>
+      <td><a href="<c:url value='/deletecat/${cat.catid}'/> ">Delete</a></td>
       </tr>
 </c:forEach>
       </table>

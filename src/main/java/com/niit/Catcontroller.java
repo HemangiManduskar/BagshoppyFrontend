@@ -49,7 +49,7 @@ public class Catcontroller {
 
 	  // Displaying Update Form
 	 @RequestMapping(value = "/updatecat/{catid}", method = RequestMethod.GET)
-	 public String updatecat(@PathVariable("catid") String catid, Model m) {
+	 public String updatecat(@PathVariable("catid") int catid, Model m) {
 	  Category c = categoryDao.getcatById(catid);
 	  m.addAttribute("isEditing", true);
 	  m.addAttribute("Category", c);
@@ -58,7 +58,7 @@ public class Catcontroller {
 	  return "Category";
 	 }
 
-	  // Updating Product
+	  // Updating category
 	 @RequestMapping(value = "/updatecat", method = RequestMethod.POST)
 	 public String updatecat(@ModelAttribute("category") Category c, Model m) {
 		 categoryDao.updatecat(c);
@@ -68,9 +68,9 @@ public class Catcontroller {
 	  return "Category";
 	 }
 
-	  // Deleting Product
+	  // Deleting category
 	 @RequestMapping(value = "/deletecat/{catid}", method = RequestMethod.GET)
-	 public String deletecat(@PathVariable("catid") String catid, Model m) {
+	 public String deletecat(@PathVariable("catid") int catid, Model m) {
 		 categoryDao.deletecatById(catid);
 	  m.addAttribute("Category", new Category());
 	  m.addAttribute("CategoryList",categoryDao.getAllCategory());

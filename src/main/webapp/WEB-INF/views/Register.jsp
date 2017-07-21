@@ -6,33 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Register</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
-
-<div>
-${msg}
-</div>
-<c:if test="${isEditing}" >
-<c:url var="formaction"  value="/updatecus"/>
-</c:if>
-<c:if test="${not isEditing}" >
-<c:url var="formaction"  value="/savecus"/>
-</c:if>
-<form:form method = "POST" modelAttribute="Customer" action = "${formaction}">
+<jsp:include page="header.jsp"></jsp:include>
+<form:form method = "POST" modelAttribute="Customer" action = "savecus">
          <table class="table">
+
 <tr>
-               <td><form:label path = "cusid">Customer Id:</form:label></td>
-               <td><form:input cssClass="form-control" path = "cusid" /></td>
-               <td>
-               <form:errors cssClass="form-control" path="cusid"/>
-               </td>
-            </tr>
-<tr>
+				<form:input type="hidden" path="cusid" />
                <td><form:label path = "cusname">Name:</form:label></td>
                <td><form:input cssClass="form-control" path = "cusname" /></td>
                <td>
@@ -81,46 +63,14 @@ ${msg}
                <td>
                <form:errors cssClass="form-control" path="userrole"/>
                </td>
-            </tr>
-            
-            
-<tr>
-               <td colspan = "2">
-               <c:if test="${isEditing}" >
-                  <input type = "submit" value = "Updatecus"/>
-                  </c:if>
-                     <c:if test="${not isEditing}" >
-                  <input type = "submit" value = "Savecus"/>
-                  </c:if>
-               </td>
-            </tr>
+            </tr>      
 </table>
 </form:form>
-      <table border="1" class="table">
-<tr>
-      <th>Customer ID</th>
-      <th>Customer Name</th>
-      <th>Username </th>
-      <th>Password</th>
-      <th>Phone No </th>
-      <th>Email</th>
-      <th>Customer Address</th>
-      <th>User Role</th>
-      </tr>
-<c:forEach var="cus" items="${CustomerList}" >
-<tr>
-      <td>${cus.cusid}</td>
-      <td>${cus.cusname}</td>
-      <td>${cus.username}</td>
-      <td>${cus.passwrd}</td>
-      <td>${cus.phnno}</td>
-      <td>${cus.email}</td>
-      <td>${cus.cusadd}</td>
-      <td>${cus.userrole}</td>
-      <td><a href="updatecus/${cus.cusid}">Update</a></td>
-      <td><a href="deletecus/${cus.cusid}">Delete</a></td>
-      </tr>
-</c:forEach>
-</table>
+      
+      <div class="wrapper">
+      <button type="submit" value="submit" class="btn btn-default">Submit</button>
+      </div>
+      
+      
 </body>
 </html>

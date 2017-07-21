@@ -28,21 +28,18 @@ public class CusController {
 	  m.addAttribute("Customer", new Customer());
 	  m.addAttribute("CustomerList", customerDao.getAllCustomer());
 	  m.addAttribute("msg", "");
-	  return "Customer";
+	  return "Register";
 	 }
 
 	  // Saving Customer
 	 @RequestMapping(value = "/savecus", method = RequestMethod.POST)
 	 public String save(@Valid @ModelAttribute("Customer") Customer cu,BindingResult result, Model m) {
 		 if(result.hasErrors()){
-			 return "Customer";
+			 return "Register";
 		 }
 		 else{
 	 customerDao.savecus(cu);
-	  m.addAttribute("Customer", new Customer());
-	  m.addAttribute("CustomerList", customerDao.getAllCustomer());
-	  m.addAttribute("msg", "Customer added successfully");
-	  return "Customer";
+	  return "Login";
 	 }
 	 }
 
@@ -54,7 +51,7 @@ public class CusController {
 	  m.addAttribute("Customer", cu);
 	  m.addAttribute("CustomerList", customerDao.getAllCustomer());
 	  m.addAttribute("msg", "");
-	  return "Customer";
+	  return "Register";
 	 }
 
 	  // Updating Customer
@@ -64,7 +61,7 @@ public class CusController {
 	  m.addAttribute("Customer", new Customer());
 	  m.addAttribute("CustomerList",customerDao.getAllCustomer());
 	  m.addAttribute("msg", "Customer updated successfully");
-	  return "Customer";
+	  return "Register";
 	 }
 
 	  // Deleting Customer
@@ -74,7 +71,7 @@ public class CusController {
 	  m.addAttribute("Customer", new Customer());
 	  m.addAttribute("CustomerList",customerDao.getAllCustomer());
 	  m.addAttribute("msg", "Customer deleted successfully");
-	  return "Customer";
+	  return "Register";
 	 }
 	
 
